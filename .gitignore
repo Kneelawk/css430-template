@@ -1,0 +1,10 @@
+# build files
+/build
+
+# Idea files
+/.idea
+/.zig-cache
+/cmake-build-*
+
+# VSCode files
+/.vscode
