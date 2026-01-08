@@ -24,4 +24,4 @@ jobs:
         run: cmake .. && cmake --build .
         working-directory: build
       - name: Valgrind
-        run: valgrind --leak-check=full build/${{ env.PROJECT_NAME }}-test
+        run: valgrind --leak-check=full --error-exitcode=1 build/${{ env.PROJECT_NAME }}-test
