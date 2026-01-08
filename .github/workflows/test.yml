@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: pisanuw/uwb430
+      options: --user root
     steps:
       - name: Checkout
         uses: actions/checkout@v6
