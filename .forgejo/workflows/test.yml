@@ -17,7 +17,7 @@ jobs:
       contents: read
     steps:
       - name: Install NodeJS
-        run: curl -fsSL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install | bash -s 24
+        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && . "$HOME/.nvm/nvm.sh" && nvm install 24
       - name: Checkout
         uses: https://code.forgejo.org/actions/checkout@v5
         with:
