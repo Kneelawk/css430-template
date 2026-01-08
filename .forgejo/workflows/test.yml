@@ -1,0 +1,29 @@
+name: test
+
+env:
+  PROJECT_NAME: css430_template
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: docker
+    container:
+      image: pisanuw/uwb430
+      options: --user root
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: https://code.forgejo.org/actions/checkout@v5
+        with:
+          submodules: recursive
+      - name: Create Build Directory
+        run: mkdir -p build
+      - name: Build
+        run: cmake .. && cmake --build .
+        working-directory: build
+      - name: Valgrind
+        run: valgrind --leak-check=full --error-exitcode=1 build/${{ env.PROJECT_NAME }}-test
