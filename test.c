@@ -1,18 +1,23 @@
-#include <CUnit/CUnit.h>
-#include <CUnit/Basic.h>
+#include "munit/munit.h"
 
 #define MAIN_FN program_main
 #include "main.c"
 
-void test1() {
-    char *arg = "main";
-    MAIN_FN(1, &arg);
+static MunitResult test(const MunitParameter params[], void *fixture) {
+  (void)params;
+  (void)fixture;
+  MAIN_FN(1, (char **)&"main");
+
+  return MUNIT_OK;
 }
 
-int main(void) {
-    CU_initialize_registry();
-    CU_pSuite testSuite = CU_add_suite("test", NULL, NULL);
-    CU_add_test(testSuite, "test1", test1);
-    CU_basic_run_tests();
-    CU_cleanup_registry();
+static const MunitTest tests[] = {
+    {"/test", test, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL},
+    {NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL}};
+
+static const MunitSuite suite = {"/tests", tests, NULL, 1,
+                                 MUNIT_SUITE_OPTION_NONE};
+
+int main(int argc, char **argv) {
+  return munit_suite_main(&suite, NULL, argc, argv);
 }
