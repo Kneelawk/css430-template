@@ -7,7 +7,7 @@
 // #include <stdlib.h>
 
 int MAIN_FN(int argc, char **argv) {
-  printf("Hello, World!\n");
+  printf("Hello, Cyan!\n");
   // int *p = malloc(sizeof(int));
   return 0;
 }
