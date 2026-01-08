@@ -16,8 +16,10 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Install NodeJS
+      - name: Install NodeJS Reps
         run: curl -fsSL https://rpm.nodesource.com/setup_22.x | sudo bash -
+      - name: Install NodeJS
+        run: sudo yum install -y nsolid
       - name: Checkout
         uses: https://code.forgejo.org/actions/checkout@v5
         with:
