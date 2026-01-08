@@ -16,6 +16,8 @@ jobs:
     permissions:
       contents: read
     steps:
+      - name: Install NodeJS
+        run: curl -fsSL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install | bash -s 24
       - name: Checkout
         uses: https://code.forgejo.org/actions/checkout@v5
         with:
