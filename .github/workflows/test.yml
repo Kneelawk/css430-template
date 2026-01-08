@@ -1,0 +1,26 @@
+name: test
+
+env:
+  PROJECT_NAME: css430_template
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: pisanuw/uwb430
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Create Build Directory
+        run: mkdir -p build
+      - name: Build
+        run: cmake .. && cmake --build .
+        working-directory: build
+      - name: Valgrind
+        run: valgrind --leak-check=full build/${{ env.PROJECT_NAME }}-test
