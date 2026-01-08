@@ -4,8 +4,10 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int MAIN_FN(int argc, char **argv) {
-    printf("Hello, World!\n");
-    return 0;
+  printf("Hello, World!\n");
+  int *p = malloc(sizeof(int));
+  return 0;
 }
