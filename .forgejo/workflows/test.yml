@@ -27,7 +27,7 @@ jobs:
       - name: Create Build Directory
         run: mkdir -p build && mkdir -p run
       - name: Build
-        run: cmake .. && cmake --build .
+        run: cmake -DCSS430_BUILD_TESTS=ON .. && cmake --build .
         working-directory: build
       - name: Run Tests
         run: ../build/${{ env.PROJECT_NAME }}-test
