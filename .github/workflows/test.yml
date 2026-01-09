@@ -19,9 +19,13 @@ jobs:
         with:
           submodules: recursive
       - name: Create Build Directory
-        run: mkdir -p build
+        run: mkdir -p build && mkdir -p run
       - name: Build
         run: cmake .. && cmake --build .
         working-directory: build
+      - name: Run Tests
+        run: ../build/${{ env.PROJECT_NAME }}-test
+        working-directory: run
       - name: Valgrind
-        run: valgrind --leak-check=full --error-exitcode=1 build/${{ env.PROJECT_NAME }}-test
+        run: valgrind --leak-check=full --error-exitcode=1 ../build/${{ env.PROJECT_NAME }}-test
+        working-directory: run
